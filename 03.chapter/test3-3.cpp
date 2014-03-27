@@ -20,25 +20,28 @@ int main()
 		vec_words.push_back(word);
 	}
 	sort(vec_words.begin(), vec_words.end());
-	vector<string>::iterator it_words = vec_words.begin();
-	while(it_words!=vec_words.end())
+	int count = 0;
+	for(int i=0; i<vec_words.size(); i++)
 	{
-		int count = 0;
-		string word = *it_words;
-		while(it_words!=vec_words.end())
+		if(count==0)
 		{
-			if(word == *it_words)
+			word = vec_words[i];
+			//cout << "-----" << word << endl;
+			count++;
+		}else
+		{
+			if(word == vec_words[i])
 			{
-				it_words++;
 				count++;
-				if(it_words == vec_words.end())
+				if(i == vec_words.size()-1)
 				{
-					cout << *(--it_words)++ << ": " << count << endl;
+					cout << word << ": " << count << endl;
 				}
 			}else
 			{
-				cout << *(--it_words)++ << ": " << count << endl;
-				break;
+				cout << word << ": " << count << endl;
+				word = vec_words[i];
+				count = 1;
 			}
 		}
 	}
