@@ -7,7 +7,7 @@ int main()
 	std::string name;
 	std::cin >> name;
 	std::string out = "hello, " + name;
-	const int pad = 1;
+	const int pad = 3;
 	const int rows = pad*2 + 3;
 	
 	const std::string::size_type cols = out.size() + pad*2 +2;
@@ -25,7 +25,7 @@ int main()
 			{
 				std::cout << '*';
 				c++;
-			}else if(r == 2 && c == 1 + pad)
+			}else if(r == rows/2 && c == 1 + pad)
 			{
 				std::cout << out;
 				c = c+out.size();
