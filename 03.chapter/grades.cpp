@@ -1,13 +1,14 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-
+#include <vector>
 using std::streamsize;
 using std::setprecision;
 using std::cout;
 using std::endl;
 using std::cin;
 using std::string;
+using std::vector;
 
 int main()
 {
@@ -23,15 +24,30 @@ int main()
 
 	// enter homework grades
 	cout << "Please enter your homework grades: ";
-	int count = 0;
-	double sum = 0;
+	vector<double> homeworkGrades;
 	double x;
 	while(cin>>x)
 	{
-		count++;
-		sum += x;
+		homeworkGrades.push_back(x);
 	}
-	double grade = midterm*0.2 + final*0.4 + sum/count*0.4;
+	double middleGrade;
+	size_t vecLen = homeworkGrades.size();
+	if(vecLen%2)
+	{
+		//even
+		if(vecLen == 0)
+		{
+			middleGrade = 0;
+		}else
+		{
+			middleGrade = (homeworkGrades[vecLen/2-1]+homeworkGrades[vecLen/2])/2;
+		}
+	}else
+	{
+		//odd
+		middleGrade = homeworkGrades[vecLen/2];
+	}
+	double grade = midterm*0.2 + final*0.4 + middleGrade*0.4;
 
 	streamsize prec = cout.precision();
 	cout << name << "grades is " << setprecision(4) << grade <<
