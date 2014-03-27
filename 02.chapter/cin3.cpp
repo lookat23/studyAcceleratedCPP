@@ -7,16 +7,37 @@ int main()
 	std::string name;
 	std::cin >> name;
 	std::string out = "hello, " + name;
-	std::string first(out.size()+4,'*');
-	std::string second(out.size()+2,' ');
-	second = '*' + second + '*';
+	const int pad = 1;
+	const int rows = pad*2 + 3;
+	
+	const std::string::size_type cols = out.size() + pad*2 +2;
 
-	out = "* " + out + " *";
-	std::cout << first << std::endl;
-	std::cout << second << std::endl;
-	std::cout << out << std::endl;
-	std::cout << second << std::endl;
-	std::cout << first << std::endl;
+	int r = 0;
+
+	// 已经输出了r行
+	while(r!=rows)
+	{
+		int c = 0;
+		// 已经输出了c列
+		while(c!=cols)
+		{
+			if(r == 0 || r == rows-1 || c == 0 || c == cols-1)
+			{
+				std::cout << '*';
+				c++;
+			}else if(r == 2 && c == 1 + pad)
+			{
+				std::cout << out;
+				c = c+out.size();
+			}else
+			{
+				std::cout << ' ';
+				c++;
+			}
+		}
+		std::cout << std::endl;
+		r++;
+	}
 
 	return 0;
 }
