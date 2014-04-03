@@ -90,6 +90,19 @@ T& operator[](size_t n)
 	return *(head+n);
 }
 
+void erase(iterator it)
+{
+	if(it>=head && it < leg)
+	{
+		while(it != leg)
+		{
+			iterator cur = it;
+			*cur = *++it;
+		}
+		leg--;
+	}
+}
+
 private:
 iterator head;
 iterator leg;
@@ -151,7 +164,10 @@ int main()
 {
 	Vec<string> v(10,"abc");
 	//cout << v[9] << legl;
+	v.push_back("2222");
 	v.push_back("1111");
+	cout << v;
+	v.erase(v.end()-2);
 	cout << v;
 	return 0;
 }
