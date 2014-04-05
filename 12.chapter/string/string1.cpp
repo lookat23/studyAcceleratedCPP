@@ -33,7 +33,7 @@ Str(const char c):data(new char[2])
 {
 	delete[] data;
 }
-const size_t size() const
+size_t size() const
 {
 	return strlen(data);
 }
